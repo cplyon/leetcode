@@ -7,8 +7,11 @@ fun main() {
     root?.left?.right = TreeNode(4)
     root?.right?.left = TreeNode(4)
     root?.right?.right = TreeNode(3)
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 3a5d019... Is Binary Tree Symmetric
     println(isSymmetric(root))
 }
 
@@ -17,7 +20,6 @@ fun isSymmetric(root: TreeNode?): Boolean {
         return true
     }
 
-   // flipChildren(root.left)
     return areEqual(root.left, root.right)
 }
 
