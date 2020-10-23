@@ -49,7 +49,7 @@ fun isPalindrome(head: ListNode?): Boolean {
 
         if (front?.`val` == back?.`val`) {
             front = front?.next
-            return retVal && true
+            return retVal
         }
         return false
     }     
