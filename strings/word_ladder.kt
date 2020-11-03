@@ -30,7 +30,7 @@ fun ladderLength(beginWord: String, endWord: String, wordList: List<String>): In
     }
 
     // Perform a breadth-first-search for endWord starting with startWord
-    // store both the word and the number of changed letters in the queue
+    // store both the word and the number of transformations
     val queue = ArrayDeque<Pair<String, Int>>()
     queue.addFirst(Pair<String, Int>(beginWord, 2))
     var newWord : String
