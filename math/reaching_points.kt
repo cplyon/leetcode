@@ -1,13 +1,12 @@
 fun main() {
     println(reachingPoints_bfs(1,1,5,8))
     println(reachingPoints_dfs(1,1,5,8))
-    println(reachingPoints_recrusive(1,1,5,8))
+    println(reachingPoints_recursive(1,1,5,8))
     println(reachingPoints_backwards(1,1,5,8))
 }
 
 
 fun reachingPoints_bfs(sx: Int, sy: Int, tx: Int, ty: Int): Boolean {
-    val visited = mutableSetOf<Pair<Int, Int>>()
     val queue = ArrayDeque<Pair<Int, Int>>()
     queue.addFirst(Pair<Int, Int>(sx, sy))
 
@@ -18,23 +17,16 @@ fun reachingPoints_bfs(sx: Int, sy: Int, tx: Int, ty: Int): Boolean {
             return true
         }
 
-        // add to the set of visited coordinates
-        visited.add(curPair)
-
         if (curPair.first > tx || curPair.second > ty) {
             // we overshot it!
             continue
         }
 
-        // try the next two moves, unless they've already been visited
+        // try the next two moves
         val nextPair1 = Pair<Int, Int>(curPair.first, curPair.second + curPair.first)
-        if (!visited.contains(nextPair1)) {
-            queue.addFirst(nextPair1)
-        }
+        queue.addFirst(nextPair1)
         val nextPair2 = Pair<Int, Int>(curPair.first + curPair.second, curPair.second)
-        if (!visited.contains(nextPair2)) {
-            queue.addFirst(nextPair2)
-        }
+        queue.addFirst(nextPair2)
     }
 
     // no path was found
@@ -42,7 +34,6 @@ fun reachingPoints_bfs(sx: Int, sy: Int, tx: Int, ty: Int): Boolean {
 }
 
 fun reachingPoints_dfs(sx: Int, sy: Int, tx: Int, ty: Int): Boolean {
-    val visited = mutableSetOf<Pair<Int, Int>>()
     val stack = ArrayDeque<Pair<Int, Int>>()
     stack.addFirst(Pair<Int, Int>(sx, sy))
 
@@ -53,23 +44,16 @@ fun reachingPoints_dfs(sx: Int, sy: Int, tx: Int, ty: Int): Boolean {
             return true
         }
 
-        // add to the set of visited coordinates
-        visited.add(curPair)
-
         if (curPair.first > tx || curPair.second > ty) {
             // we overshot it!
             continue
         }
 
-        // try the next two moves, unless they've already been visited
+        // try the next two moves
         val nextPair1 = Pair<Int, Int>(curPair.first, curPair.second + curPair.first)
-        if (!visited.contains(nextPair1)) {
-            stack.addFirst(nextPair1)
-        }
+        stack.addFirst(nextPair1)
         val nextPair2 = Pair<Int, Int>(curPair.first + curPair.second, curPair.second)
-        if (!visited.contains(nextPair2)) {
-            stack.addFirst(nextPair2)
-        }
+        stack.addFirst(nextPair2)
     }
 
     // no path was found
