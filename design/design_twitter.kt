@@ -17,8 +17,8 @@ class Twitter() {
     // userId -> [indexes into tweetStream]
     val tweetMap = mutableMapOf<Int, ArrayDeque<Int>>()
     // userId -> [userIds of followees]
-    val followMap = mutableMapOf<Int, MutableSet<Int>>()
 
+    val followMap = mutableMapOf<Int, MutableSet<Int>>()
 
     /** Compose a new tweet. */
     fun postTweet(userId: Int, tweetId: Int) {
@@ -37,6 +37,7 @@ class Twitter() {
 
         // get each followee's tweets
         followMap.getOrDefault(userId, mutableSetOf<Int>()).forEach { f ->
+
             // add 10 most recent tweets to the feed
             val tweets = tweetMap.getOrDefault(f, ArrayDeque<Int>()).toList<Int>()
             feed.addAll( tweets.slice(0..Math.min(10, tweets.size)-1) )
@@ -52,6 +53,7 @@ class Twitter() {
             // no-op, since every user implicitly follows themself
             return
         }
+
         val followees = followMap.getOrDefault(followerId, mutableSetOf<Int>())
         if (followeeId !in followees) {
             followees.add(followeeId)
