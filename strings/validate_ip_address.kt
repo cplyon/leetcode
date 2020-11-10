@@ -1,6 +1,6 @@
 fun main() {
     val s = Solution()
-    val IP = "2001:db8:85a3:0:0:8A2E:0370:7334"
+    val IP = "FFFF:db8:85a3:0:0:8A2E:0370:7334"
     println(s.validIPAddress(IP))
 }
 
@@ -28,15 +28,15 @@ class Solution {
             if (n.length > 1 && n[0] == '0') {
                 return false
             }
-            var intVal : Int
+            var intValue : Int
             try {
-                intVal = n.toInt()
+                intValue = n.toInt()
             } catch (e: Exception) {
                 // not a number
                 return false
             }
             // check if number is in range
-            if (intVal < 0 || intVal > 255) {
+            if (intValue < 0 || intValue > 255) {
                 return false
             }
         }
@@ -50,14 +50,15 @@ class Solution {
             return false
         }
         for (n in numbers) {
-            // check section length
-            if (n.length > 4) {
-                return false
-            }
+            var intValue : Int
             try {
-                Integer.parseInt(n, 16)
+                intValue = Integer.parseInt(n, 16)
             } catch (e: Exception) {
                 // not a number
+                return false
+            }
+            // check if number is in range
+            if (intValue < 0 || intValue > 65535) {
                 return false
             }
         }
