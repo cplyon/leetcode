@@ -8,7 +8,6 @@ fun main() {
 
 
 class Solution {
-
     fun firstMissingPositive_linear(nums: IntArray): Int {
         // O(n) time, O(1) space
         var i = 0
@@ -55,7 +54,6 @@ class Solution {
         // values in the list
         return i + 1
     }
-
 
     fun firstMissingPositive_set(nums: IntArray): Int {
         // O(n) time, O(n) space
