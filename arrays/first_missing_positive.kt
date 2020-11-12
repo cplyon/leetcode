@@ -1,12 +1,61 @@
 fun main() {
     val s = Solution()
-    val nums = intArrayOf(1,0,3,-9,18,1,14,-1,4)
-    println(s.firstMissingPositive_sort(nums))
-    println(s.firstMissingPositive_set(nums))
+    val nums = intArrayOf(1,1)
+    //println(s.firstMissingPositive_sort(nums))
+    //println(s.firstMissingPositive_set(nums))
+    println(s.firstMissingPositive_linear(nums))
 }
 
 
 class Solution {
+
+    fun firstMissingPositive_linear(nums: IntArray): Int {
+        // O(n) time, O(1) space
+        var i = 0
+
+        // rearrange all values to match their indices (1-based)
+        while (i < nums.size) {
+            if (nums[i] > nums.size || nums[i] < 0) {
+                // set all values outside the range of indices to 0
+                nums[i] = 0
+            }
+            i++
+        }
+
+        i = 0
+        while (i < nums.size) {
+            // skip values that are outside the range of indices,
+            // or are in the right spot already
+            if (nums[i] > 0 && nums[i] != i+1) {
+                val temp = nums[i]
+                if (nums[temp-1] == nums[i]) {
+                    // no sense swapping equal values, set this one to 0
+                    // since the other one is in the right spot
+                    nums[i] = 0
+                } else {
+                    // swap to put this one in the right place
+                    nums[i] = nums[temp-1]
+                    nums[temp-1] = temp
+                    i--
+                }
+            }
+            i++
+        }
+
+        i = 0
+        while (i < nums.size) {
+            if (nums[i] == 0) {
+                // found the missing value!
+                break
+            }
+            i++
+        }
+
+        // the missing value has already been found, or is larger than the
+        // values in the list
+        return i + 1
+    }
+
 
     fun firstMissingPositive_set(nums: IntArray): Int {
         // O(n) time, O(n) space
