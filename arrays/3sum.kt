@@ -11,13 +11,7 @@ class Solution {
         if (nums.size < 3) {
             return emptyList<List<Int>>()
         }
-        nums.sort()
-        if (nums.last() < 0) {
-            return emptyList<List<Int>>()
-        }
-        if (nums.first() > 0) {
-            return emptyList<List<Int>>()
-        }
+
         val returnList = mutableListOf<List<Int>>()
 
         // separate the neg and pos numbers, and count the zeroes
@@ -52,13 +46,13 @@ class Solution {
 
         // we only need to check that two positives + one negative equal zero
         // and two negatives + one positive equal zero
-        returnList.addAll(generateLists(positives, negatives))
-        returnList.addAll(generateLists(negatives, positives))
+        returnList.addAll(TwoSum(positives, negatives))
+        returnList.addAll(TwoSum(negatives, positives))
 
         return returnList.distinct()
     }
 
-    fun generateLists(targets: List<Int>, values: List<Int>) : List<List<Int>> {
+    fun TwoSum(targets: List<Int>, values: List<Int>) : List<List<Int>> {
 
         val returnList = mutableListOf<List<Int>>()
         for (i in 0..targets.size-1) {
