@@ -5,27 +5,26 @@ fun main() {
     root.right = TreeNode(3)
     root.left?.left = TreeNode(4)
 
-    println(s.inorderTraversal_recursive(root))
-    println(s.inorderTraversal_iterative(root))
+    println(s.preorderTraversal_recursive(root))
+    println(s.preorderTraversal_iterative(root))
 }
 
 class Solution {
-    fun inorderTraversal_recursive(root: TreeNode?): List<Int> {
+    fun preorderTraversal_recursive(root: TreeNode?): List<Int> {
         // recursive solution
         if (root == null) {
             return emptyList<Int>()
         }
 
         val traversal = mutableListOf<Int>()
-        traversal.addAll(inorderTraversal_recursive(root.left))
         traversal.add(root.`val`)
-        traversal.addAll(inorderTraversal_recursive(root.right))
+        traversal.addAll(preorderTraversal_recursive(root.left))
+        traversal.addAll(preorderTraversal_recursive(root.right))
         return traversal
     }
 
-
-    fun inorderTraversal_iterative(root: TreeNode?): List<Int> {
-        // iterative, stack-based
+    fun preorderTraversal_iterative(root: TreeNode?): List<Int> {
+        // iterative solution
         if (root == null) {
             return emptyList<Int>()
         }
@@ -33,8 +32,11 @@ class Solution {
         val traversal = mutableListOf<Int>()
         val stack = ArrayDeque<TreeNode?>()
         var cur = root
+
         while (true) {
             if (cur != null) {
+                // add this value to the list
+                traversal.add(cur.`val`)
                 // iterate down the left side
                 stack.addFirst(cur)
                 cur = cur.left
@@ -48,8 +50,6 @@ class Solution {
 
                 // pop the next node
                 cur = stack.removeFirst()!!
-                // add this value to list
-                traversal.add(cur.`val`)
                 // then move right
                 cur = cur.right
             }
