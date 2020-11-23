@@ -33,9 +33,6 @@ class Solution {
             } else {
                 cur++
             }
-
-            printArray(nums)
-            println(" $head $tail $cur")
         }
     }
 
