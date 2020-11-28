@@ -2,14 +2,15 @@ fun main() {
     val s = Solution()
     val nums = intArrayOf(0,0,0,1,1,2,2,2,2,3,3,4,4,4,4,5,64)
     val target = 4
-    println(s._searchRange(nums, target).toList())
     println(s.searchRange(nums, target).toList())
+    println(s.searchRange_linear(nums, target).toList())
 }
 
 class Solution {
 
     fun searchRange(nums: IntArray, target: Int): IntArray {
-        // O(nlogn)
+        // three binary searches (find an index of target, binary search the subarrays on either side)
+        // O(logn)
 
         val range = intArrayOf(-1,-1)
         if (nums.isEmpty()) {
@@ -59,7 +60,8 @@ class Solution {
         return -1
     }
 
-    fun _searchRange(nums: IntArray, target: Int): IntArray {
+    fun searchRange_linear(nums: IntArray, target: Int): IntArray {
+        // binary search, then linear expansion
         // worst case, O(n)
 
         val range = intArrayOf(-1,-1)
