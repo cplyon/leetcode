@@ -17,16 +17,9 @@ class Solution {
 
         // objective function:
         // f(i) = max step reachable from step i
-      //  val dp = IntArray(nums.size) {0}
 
         // base case
-     //   dp[0] = nums[0] // we can always reach the 0th step
-     //   if (dp[0] == 0) {
-     //       return false
-     //   }
-
         var prev = nums[0]
-
 
         // recurrence relation
         // f(i) = max(f(i-1)-1, nums[i])
