@@ -1,4 +1,4 @@
-#! /usr/local/bin/python3
+#!  /usr/bin/env python3
 
 # Given an integer n, return the number of trailing zeroes in n!.
 # Follow up: Could you write a solution that works in logarithmic time?

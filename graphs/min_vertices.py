@@ -1,4 +1,4 @@
-#! /usr/local/bin/python3
+#!  /usr/bin/env python3
 
 class Solution:
     def findSmallestSetOfVertices(self, n: int, edges: list[list[int]]) -> list[int]:
