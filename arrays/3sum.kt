@@ -17,11 +17,15 @@ class Solution {
         // separate the neg and pos numbers, and count the zeroes
         val negatives = mutableListOf<Int>()
         val positives = mutableListOf<Int>()
+        val positives_set = mutableSetOf<Int>()
         var numZeroes = 0
         for (n in nums) {
             when {
                 n < 0 -> negatives.add(n)
-                n > 0 -> positives.add(n)
+                n > 0 -> {
+                    positives.add(n)
+                    positives_set.add(n)
+                }
                 else -> numZeroes++
             }
         }
@@ -35,7 +39,7 @@ class Solution {
             // since we have at least one zero, we can just see if there are any
             // negs that equal -pos
             for (n in negatives) {
-                if (-n in positives) {
+                if (-n in positives_set) {
                     returnList.add(listOf<Int>(n,0,-n))
                 }
             }
@@ -46,13 +50,13 @@ class Solution {
 
         // we only need to check that two positives + one negative equal zero
         // and two negatives + one positive equal zero
-        returnList.addAll(TwoSum(positives, negatives))
-        returnList.addAll(TwoSum(negatives, positives))
+        returnList.addAll(generateLists(positives, negatives))
+        returnList.addAll(generateLists(negatives, positives))
 
         return returnList.distinct()
     }
 
-    fun TwoSum(targets: List<Int>, values: List<Int>) : List<List<Int>> {
+    fun generateLists(targets: List<Int>, values: List<Int>) : List<List<Int>> {
 
         val returnList = mutableListOf<List<Int>>()
         for (i in 0..targets.size-1) {
@@ -79,5 +83,5 @@ class Solution {
         return returnList
 
     }
-
 }
+
