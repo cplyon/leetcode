@@ -8,24 +8,14 @@ fun main() {
 
 fun twoSum(nums: IntArray, target: Int): IntArray {
     val diffTable = HashMap<Int, Int>()
-    val retList = mutableListOf<Int>()
-    nums.forEach {
-        diffTable.put(it, target-it)
+
+    for ((i, n) in nums.withIndex()) {
+        val diff = target-n
+        if (diffTable.contains(diff)) {
+            return intArrayOf(i, diffTable.get(diff)!!)
+        }
+        diffTable.put(n, i)
     }
 
-    var halfIndex = -1
-    for (i in nums.indices) {
-        if (nums[i] == target-nums[i]) {
-            if (halfIndex >= 0) {
-                retList.add(halfIndex)
-                retList.add(i)
-            } else {
-                halfIndex = i
-            }
-        } else if (diffTable.contains(target-nums[i])) {
-            retList.add(i)
-        }
-    }
-    
-    return retList.toIntArray()
+    return intArrayOf()
 }
