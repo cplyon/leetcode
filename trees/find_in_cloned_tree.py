@@ -19,6 +19,32 @@ class TreeNode:
 # node and the answer must be a reference to a node in the cloned tree.
 # Follow up: Solve the problem if repeated values on the tree are allowed.
 class Solution:
+
+    def getTargetCopy2(self, original: TreeNode, cloned: TreeNode,
+                      target: TreeNode) -> TreeNode:
+        # O(n)
+        # DFS inorder traversal of both trees at once
+        if not original or not cloned or not target:
+            return None
+        return self.find(original, cloned, target)
+
+    def find(self, root: TreeNode, cloned: TreeNode,
+             target: TreeNode) -> TreeNode:
+        if root and target:
+            if root == target:
+                return cloned
+
+            if root.left:
+                left = self.find(root.left, cloned.left, target)
+                if left:
+                    return left
+            if root.right:
+                right = self.find(root.right, cloned.right, target)
+                if right:
+                    return right
+
+        return None
+
     def getTargetCopy(self, original: TreeNode, cloned: TreeNode,
                       target: TreeNode) -> TreeNode:
         # O(n+n) => O(n)
@@ -84,3 +110,4 @@ if __name__ == "__main__":
 
     s = Solution()
     print(s.getTargetCopy(original, cloned, target))
+    print(s.getTargetCopy2(original, cloned, target))
