@@ -1,11 +1,5 @@
 #!  /usr/bin/env python3
 
-#    The town judge trusts nobody.
-#    Everybody (except for the town judge) trusts the town judge.
-#    There is exactly one person that satisfies properties 1 and 2.
-
-#!  /usr/bin/env python3
-
 # Given a directed acyclic graph (DAG) of n nodes labeled from 0 to n - 1,
 # find all possible paths from node 0 to node n - 1, and return them in any
 # order.
