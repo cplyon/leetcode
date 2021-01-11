@@ -9,19 +9,17 @@
 
 class Solution:
     def maxProfit(self, prices: list[int]) -> int:
-        if not prices:
-            return 0
-
-        buy = 0
         max_profit = -2**31
-        for i in range(1, len(prices)):
-            cur_profit = prices[i] - prices[buy]
-            if cur_profit < 0:
-                buy = i
-            else:
-                max_profit = max(max_profit, cur_profit)
+        if prices:
+            buy = 0
+            for i in range(1, len(prices)):
+                cur_profit = prices[i] - prices[buy]
+                if cur_profit < 0:
+                    buy = i
+                else:
+                    max_profit = max(max_profit, cur_profit)
 
-        return max_profit if max_profit > 0 else 0
+        return max(max_profit, 0)
 
 
 if __name__ == "__main__":
