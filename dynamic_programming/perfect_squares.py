@@ -3,7 +3,7 @@
 class Solution:
     def numSquares(self, n: int) -> int:
         MAX = 10000
-        if n < 1 or n > 10000:
+        if n < 1 or n > MAX:
             return 0
 
         squares = set([x*x for x in range(1, 101)])
