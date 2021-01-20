@@ -1,8 +1,8 @@
 fun main() {
 
     val start = "AACCGGTT"
-    val end = "AACCGGTA"
-    val bank = arrayOf<String>("AACCGGTA")
+    val end = "AAACGGTA"
+    val bank = arrayOf<String>("AACCGGTA", "AACCGCTA", "AAACGGTA")
 
     println(minMutation(start, end, bank))
 }
@@ -11,12 +11,12 @@ fun main() {
     * Starting point is assumed to be valid, so it might not be included in the bank.
     * If multiple mutations are needed, all mutations during in the sequence must be valid.
     * You may assume start and end string is not the same.
-*/  
-    
+*/
+
 fun minMutation(start: String, end: String, bank: Array<String>): Int {
     if (end !in bank) {
         return -1
-    }  
+    }
 
     val allCombos = mutableMapOf<String, MutableList<String>>()
 
