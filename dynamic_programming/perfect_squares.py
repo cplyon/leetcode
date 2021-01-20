@@ -33,8 +33,26 @@ class Solution:
 
         return memo[-1]
 
+    def numSquares2(self, n: int) -> int:
+        MAX = 10000
+        if n < 1 or n > MAX:
+            return 0
+
+        squares = [x*x for x in range(n+1)]
+        memo = [MAX+1] * (n+1)
+        memo[0] = 0
+
+        for s in squares:
+            for i in range(s, n+1):
+                memo[i] = min(memo[i], memo[i-s]+1)
+
+        if memo[-1] == MAX+1:
+            return -1
+        return memo[-1]
+
 
 if __name__ == "__main__":
     s = Solution()
     n = 999
     print(s.numSquares(n))
+    print(s.numSquares2(n))
