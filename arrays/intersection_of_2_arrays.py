@@ -2,21 +2,17 @@
 
 class Solution:
     def intersection(self, nums1: list[int], nums2: list[int]) -> list[int]:
-        if not nums1 or not nums2:
-            return []
-
         return list(set(nums1).intersection(set(nums2)))
 
     def intersection2(self, nums1: list[int], nums2: list[int]) -> list[int]:
-        output = []
+        result = []
         set1 = set(nums1)
         for n in nums2:
             if n in set1:
-                output.append(n)
+                result.append(n)
                 set1.remove(n)
 
-        return output
-
+        return result
 
 
 if __name__ == "__main__":
