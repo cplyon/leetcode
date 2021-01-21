@@ -9,14 +9,14 @@ class Node:
 
 class Solution:
     def levelOrder(self, root: Node) -> list[list[int]]:
+        if not root:
+            return []
         result = []
         queue = []
 
         queue.append((root, 0))
         while len(queue) > 0:
             cur, level = queue.pop(0)
-            if not cur:
-                continue
             if len(result) == level:
                 # new level
                 result.append([])
