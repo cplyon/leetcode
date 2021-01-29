@@ -3,7 +3,6 @@
 class Solution:
 
     def multiply2(self, A: list[list[int]], B: list[list[int]]) -> list[list[int]]:
-        # O(rows_A*cols_B*colsA)
         if not A or not B:
             return []
 
