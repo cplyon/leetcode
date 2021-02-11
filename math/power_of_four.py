@@ -2,7 +2,7 @@
 
 class Solution:
     def isPowerOfFour(self, n: int) -> bool:
-        return n in {4**x for x in range(32)}
+        return n in {4**x for x in range(16)}
 
 
 if __name__ == "__main__":
